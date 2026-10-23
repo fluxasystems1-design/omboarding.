@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propuesta | TIXXOS × PARTNERSFLUX</title>
+  <meta name="description" content="Sistema de captación de organizadores para el lanzamiento de Tixxos. 3 meses · COP 3.497.000 al mes." />
+  <meta property="og:title" content="Propuesta | TIXXOS × PARTNERSFLUX" />
+  <meta property="og:description" content="Sistema de captación de organizadores para el lanzamiento de Tixxos. 3 meses · COP 3.497.000 al mes." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="assets/logo-tixxos.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --paper: #ffffff;
+      --ink: #12151c;
+      --text: #2a3140;
+      --muted: #5d6778;
+      --line: rgba(16, 20, 32, 0.1);
+      --black: #000000;
+      --black-2: #07080d;
+      --magenta: #ff2f8e;
+      --cyan: #19d4f2;
+      --blue: #3a5bff;
+      --grad: linear-gradient(100deg, #ff2f8e 0%, #8b6bff 46%, #19d4f2 72%, #3a5bff 100%);
+      --shadow: 0 24px 60px rgba(16, 20, 32, 0.08);
+      --nav-h: 74px;
+      --max: 1120px;
+      --prose: 740px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Poppins, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16.5px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 3px;
+      z-index: 60;
+      background: transparent;
+    }
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--grad);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 22px 12px;
+      background: rgba(244, 246, 250, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+    }
+    .nav.is-stuck { border-bottom-color: var(--line); }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+    .nav-mark {
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      font-size: 15px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-by {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      color: #5c6574;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(16, 20, 32, 0.06);
+      border-radius: 999px;
+      padding: 7px 12px;
+      white-space: nowrap;
+    }
+    .nav-links a.is-active {
+      color: #fff;
+      background: #12151c;
+      border-color: #12151c;
+    }
+
+    .hero, .band, .close { scroll-margin-top: 78px; }
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 74px);
+      background: #000;
+      color: #f7f8fb;
+      overflow: hidden;
+      display: grid;
+      align-items: end;
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .hero-glow--a {
+      width: 520px;
+      height: 520px;
+      left: -120px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(255, 47, 142, 0.55), transparent 68%);
+    }
+    .hero-glow--b {
+      width: 640px;
+      height: 640px;
+      right: -160px;
+      bottom: -180px;
+      background: radial-gradient(circle, rgba(58, 91, 255, 0.55), transparent 68%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 72px 0 64px;
+    }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: 36px;
+      align-items: end;
+    }
+    .hero-aside {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 26px 24px 22px;
+    }
+    .hero-aside p { margin: 0; color: rgba(247, 248, 251, 0.78); }
+    .hero-aside .kicker {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #7ee9f8;
+    }
+    .hero-aside .figure {
+      margin: 10px 0 4px;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+      color: #fff;
+    }
+    .hero-aside ul { margin: 16px 0 0; padding: 0; list-style: none; }
+    .hero-aside li {
+      padding: 10px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 14.5px;
+      color: rgba(247, 248, 251, 0.86);
+    }
+    .logo-pair {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 22px;
+    }
+    .logo-pair img {
+      height: auto;
+      mix-blend-mode: screen;
+    }
+    .logo-tixxos { width: min(340px, 54vw); }
+    .logo-fluxa { width: min(148px, 30vw); }
+    .logo-x {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .close .logo-tixxos { width: min(220px, 42vw); }
+    .close .logo-fluxa { width: min(108px, 24vw); }
+    .close .logo-pair { margin-bottom: 26px; }
+    .hero h1 {
+      max-width: 18em;
+      margin: 0;
+      font-size: clamp(32px, 4.2vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      color: #fff;
+    }
+    .hero-kicker {
+      margin: 0 0 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: rgba(247, 248, 251, 0.72);
+    }
+    .hero-lead {
+      margin: 22px 0 0;
+      max-width: 38ch;
+      font-size: 18px;
+      color: rgba(247, 248, 251, 0.84);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(247, 248, 251, 0.72);
+    }
+    .hero-meta span[data-dot]::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      margin: 0 12px 3px 0;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid transparent;
+    }
+    .btn-solid { background: #fff; color: #12151c; }
+    .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+    .btn-dark { background: #12151c; color: #fff; }
+    .btn:focus-visible, .nav-links a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+    .band { padding: 88px 0; }
+    .band--mist { background: rgba(255, 255, 255, 0.55); }
+    .band--paper { background: var(--paper); }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .prose { max-width: var(--prose); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6a7384;
+    }
+    .eyebrow i {
+      font-style: normal;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--ink);
+      max-width: 22em;
+    }
+    .lead-in { font-size: 18px; color: var(--ink); margin: 0 0 16px; }
+    p { margin: 0 0 16px; }
+    .ask {
+      margin: 26px 0;
+      padding-left: 18px;
+      border-left: 3px solid transparent;
+      border-image: var(--grad) 1;
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 600;
+      color: var(--ink);
+      max-width: 34ch;
+    }
+
+    .shift {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 36px;
+    }
+    .shift-col {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px 22px 8px;
+      box-shadow: var(--shadow);
+    }
+    .shift-col h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .shift-col--after h3 {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      width: fit-content;
+    }
+    .shift-col ol { list-style: none; margin: 0; padding: 0; }
+    .shift-col li {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+
+    .roles {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .role {
+      border-radius: 22px;
+      padding: 28px;
+    }
+    .role--us { background: #12151c; color: #f4f6fa; }
+    .role--them { background: var(--paper); border: 1px solid var(--line); }
+    .role .kicker {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #19d4f2;
+    }
+    .role--them .kicker { color: var(--magenta); }
+    .role h3 { margin: 0 0 10px; font-size: 26px; letter-spacing: -0.03em; line-height: 1.2; }
+    .role p { margin: 0; color: inherit; }
+    .role--them p { color: var(--text); }
+
+    .grid-4, .grid-3, .grid-2 { display: grid; gap: 16px; margin-top: 28px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+    }
+    .card .num {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .card h3 { margin: 10px 0 8px; font-size: 18px; letter-spacing: -0.02em; color: var(--ink); }
+    .card p { margin: 0; font-size: 14.5px; color: var(--muted); }
+    .card ul, .phase ul, .quiet ul { margin: 12px 0 0; padding: 0 0 0 18px; }
+    .card li, .phase li, .quiet li { margin: 0 0 8px; }
+
+    .phase {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+    .phase header { margin-bottom: 8px; }
+    .phase .when {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .phase h3 {
+      margin: 8px 0 0;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .phase ul { color: var(--text); font-size: 14.5px; }
+    .outcome {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+    .outcome strong { font-weight: 600; }
+
+    .money {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .money-hero {
+      background: #000;
+      color: #fff;
+      border-radius: 28px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .money-hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -80px;
+      bottom: -90px;
+      background: radial-gradient(circle, rgba(58, 91, 255, 0.7), transparent 70%);
+      pointer-events: none;
+    }
+    .money-hero .label { position: relative; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .money-hero .price {
+      position: relative;
+      margin: 12px 0 6px;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.04em;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .money-hero .sub { position: relative; color: rgba(255,255,255,0.78); margin: 0; }
+    .terms { display: grid; gap: 12px; }
+    .term {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+    }
+    .term h3 { margin: 0 0 6px; font-size: 15px; color: var(--ink); }
+    .term p { margin: 0; font-size: 14.5px; color: var(--text); }
+
+    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; margin-top: 8px; }
+    .rules div { padding-top: 14px; border-top: 1px solid var(--line); }
+    .rules strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+    .rules p { margin: 0; font-size: 14.5px; }
+
+    .quiet {
+      background: #eef1f6;
+      border-radius: 24px;
+      padding: 28px;
+    }
+    .quiet h3 { margin: 0 0 8px; color: var(--ink); font-size: 20px; }
+    .quiet p, .quiet li { color: var(--text); font-size: 15px; }
+
+    .close {
+      background: #000;
+      color: #f7f8fb;
+      padding: 96px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .close::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      left: -120px;
+      bottom: -180px;
+      background: radial-gradient(circle, rgba(255, 47, 142, 0.45), transparent 68%);
+      pointer-events: none;
+    }
+    .close .wrap { position: relative; }
+    .close h2 { color: #fff; max-width: 22em; }
+    .close p { max-width: var(--prose); color: rgba(247,248,251,0.82); }
+    .close-logo { width: 220px; margin-bottom: 28px; mix-blend-mode: screen; }
+    .close-box {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 22px;
+    }
+    .close-box p { margin: 0; font-size: 14px; }
+    .foot {
+      background: #000;
+      color: rgba(255,255,255,0.55);
+      padding: 0 0 28px;
+      font-size: 13px;
+    }
+    .foot .wrap { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; }
+
+    h1, h2, .phase h3, .money-hero .price, .nav-mark, .when, .hero-lead {
+      font-family: Syne, Poppins, sans-serif;
+    }
+    h1, h2, .phase h3 { font-weight: 700; }
+    .money-hero .price {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links a { transition: background .25s ease, color .25s ease; }
+    .card, .phase, .term, .shift-col {
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    @media (hover: hover) {
+      .card:hover, .phase:hover, .term:hover, .shift-col:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(16, 20, 32, 0.1);
+      }
+    }
+    .hero-glow { animation: drift 16s ease-in-out infinite; }
+    .hero-glow--b { animation-duration: 20s; animation-direction: reverse; }
+    .hero-inner > * {
+      animation: rise .85s cubic-bezier(.16, .84, .32, 1) both;
+    }
+    .hero-inner > *:nth-child(2) { animation-delay: .08s; }
+    .hero-inner > *:nth-child(3) { animation-delay: .16s; }
+    .hero-inner > *:nth-child(4) { animation-delay: .24s; }
+    .hero-inner > *:nth-child(5) { animation-delay: .32s; }
+    .rise {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s cubic-bezier(.16, .84, .32, 1), transform .7s cubic-bezier(.16, .84, .32, 1);
+    }
+    .rise.is-in { opacity: 1; transform: none; }
+    @media (hover: hover) {
+      .card.rise.is-in:hover,
+      .phase.rise.is-in:hover,
+      .term.rise.is-in:hover,
+      .shift-col.rise.is-in:hover {
+        transform: translateY(-4px);
+      }
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(28px, 18px, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-glow, .hero-inner > * { animation: none; }
+      .rise { opacity: 1; transform: none; transition: none; }
+    }
+
+    @media (max-width: 980px) {
+      .grid-4, .grid-3, .roles, .money, .shift, .hero-layout { grid-template-columns: 1fr; }
+      .rules { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 48px 0 56px; }
+      .band { padding: 64px 0; }
+      .wrap, .hero-inner { width: min(var(--max), calc(100% - 32px)); }
+    }
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      h2 { max-width: none; }
+      .nav { padding: 12px 12px 10px; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#portada">
+      <span class="nav-mark">TIXxOS</span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#portada">El plan</a>
+      <a href="#partida">Oportunidad</a>
+      <a href="#meses">El cambio</a>
+      <a href="#quien">El equipo</a>
+      <a href="#juntos">Juntos</a>
+      <a href="#fases">Mes a mes</a>
+      <a href="#fuera">Alcance</a>
+      <a href="#ritmo">El ritmo</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#despues">Lo que sigue</a>
+      <a href="#cierre">Arranque</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="portada">
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+      <div class="hero-inner">
+        <div class="logo-pair">
+          <img class="logo-tixxos" src="assets/logo-tixxos.png" alt="TIXxOS" />
+          <span class="logo-x" aria-hidden="true">×</span>
+          <img class="logo-fluxa" src="assets/logo-fluxa.png" alt="Fluxa" />
+        </div>
+        <p class="hero-kicker">TIXXOS × PARTNERSFLUX</p>
+        <h1>Sistema de captación de organizadores para el lanzamiento de Tixxos</h1>
+        <p class="hero-lead">3 meses · COP 3.497.000 al mes</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#partida">Ver propuesta</a>
+          <a class="btn btn-ghost" href="https://wa.me/573116425337?text=Hola%20Partnersflux.%20Revis%C3%A9%20la%20propuesta%20de%20Tixxos%20y%20quiero%20conversar%20sobre%20el%20arranque.">Hablar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="partida">
+      <div class="wrap prose">
+        <p class="eyebrow"><i>01</i> Punto de partida</p>
+        <h2>Punto de partida</h2>
+        <p>Tixxos sale al mercado con un modelo de dos lados: organizadores que publican eventos y compradores que llegan por ellos. Sin organizadores no hay oferta, y sin oferta no hay a quién atraer. Por eso este trimestre se concentra en un frente: que los organizadores conozcan Tixxos, entiendan por qué les conviene vender sus entradas ahí y lleguen a una reunión con el equipo de Tixxos ya calificados.</p>
+        <p>Tixxos ya tiene la plataforma, un modelo de comisión definido (12% sobre las entradas) y un lanzamiento en preparación para Colombia y Estados Unidos. En tres meses construimos el sistema que lleva a los organizadores hasta esa reunión, y una comunidad activa que respalda la marca mientras tanto.</p>
+      </div>
+    </section>
+
+    <section class="band band--paper" id="meses">
+      <div class="wrap">
+        <div class="prose">
+          <p class="eyebrow"><i>02</i> Al iniciar y a los 3 meses</p>
+          <h2>Al iniciar y a los 3 meses</h2>
+        </div>
+        <div class="shift">
+          <article class="shift-col">
+            <h3>Al iniciar</h3>
+            <ol>
+              <li>Lanzamiento en preparación</li>
+              <li>Organizadores sin una ruta definida para conocer la plataforma</li>
+              <li>Consultas atendidas una a una</li>
+              <li>Presencia en redes por construir</li>
+              <li>Sin datos sobre qué mensajes funcionan</li>
+            </ol>
+          </article>
+          <article class="shift-col shift-col--after">
+            <h3>A los 3 meses</h3>
+            <ol>
+              <li>Landing y CRM operando</li>
+              <li>Campañas que los llevan a un solo punto de captación</li>
+              <li>Asistente de IA que responde, califica y agenda la reunión</li>
+              <li>Perfiles activos, con calendario y comunidad gestionada</li>
+              <li>Aprendizajes documentados y hoja de ruta del siguiente trimestre</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="quien">
+      <div class="wrap">
+        <div class="prose">
+          <p class="eyebrow"><i>03</i> Quién hace qué</p>
+          <h2>Quién hace qué</h2>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Estrategia y contenido</h3>
+            <p>Posicionamiento, calendario de contenido, creación de las piezas principales y coordinación general.</p>
+          </article>
+          <article class="card">
+            <h3>Paid media</h3>
+            <p>Configuración, pruebas, optimización y reportes de las campañas en Meta Ads.</p>
+          </article>
+          <article class="card">
+            <h3>Sistemas y automatización</h3>
+            <p>Landing, CRM, automatizaciones y asistente de IA con su base de conocimiento.</p>
+          </article>
+          <article class="card">
+            <h3>Community management</h3>
+            <p>Adaptación de las piezas a cada red, stories y formatos cortos, textos de publicación, programación y gestión de la comunidad, con respuesta a comentarios y mensajes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--mist" id="juntos">
+      <div class="wrap prose">
+        <p class="eyebrow"><i>04</i> Cómo trabajamos juntos</p>
+        <h2>Cómo trabajamos juntos</h2>
+        <p>Partnersflux atrae organizadores con contenido y pauta, y los recibe en un sistema automatizado que responde sus preguntas, califica su interés y agenda la reunión. Tixxos atiende esa reunión, presenta la plataforma, negocia y cierra la vinculación.</p>
+      </div>
+    </section>
+
+    <section class="band band--paper" id="fases">
+      <div class="wrap">
+        <div class="prose">
+          <p class="eyebrow"><i>05</i> Las tres fases</p>
+          <h2>Las tres fases</h2>
+        </div>
+        <div class="grid-3">
+          <article class="phase">
+            <header>
+              <div class="when">Fase 1, Mes 1</div>
+              <h3>Bases</h3>
+            </header>
+            <ul>
+              <li>Diagnóstico de posicionamiento y oferta.</li>
+              <li>Públicos prioritarios y mensajes para organizadores.</li>
+              <li>Estrategia de captación.</li>
+              <li>Landing de contacto para organizadores.</li>
+              <li>CRM con las etapas del proceso comercial.</li>
+              <li>Asistente de IA que responde preguntas frecuentes, califica y agenda, con una base de conocimiento armada con información de Tixxos.</li>
+              <li>Apertura u optimización de perfiles, tono de comunicación y guía de respuestas para la comunidad.</li>
+              <li>Dos piezas de contenido y calendario del mes 2.</li>
+            </ul>
+            <p class="outcome"><strong>Resultado:</strong> un sistema listo para recibir organizadores y perfiles preparados para comunicar.</p>
+          </article>
+          <article class="phase">
+            <header>
+              <div class="when">Fase 2, Mes 2</div>
+              <h3>Adquisición</h3>
+            </header>
+            <ul>
+              <li>Campaña de Meta Ads para el segmento prioritario.</li>
+              <li>Cuatro piezas de contenido.</li>
+              <li>Pruebas de mensajes, audiencias y creativos.</li>
+              <li>Secuencia automática de seguimiento a prospectos.</li>
+              <li>Adaptación de las piezas, producción de stories y formatos cortos, publicación del calendario y respuesta a la comunidad en horario hábil.</li>
+              <li>Monitoreo de registros y reuniones agendadas, con reporte de resultados.</li>
+            </ul>
+            <p class="outcome"><strong>Resultado:</strong> primeras reuniones calificadas agendadas y datos sobre qué mensajes funcionan.</p>
+          </article>
+          <article class="phase">
+            <header>
+              <div class="when">Fase 3, Mes 3</div>
+              <h3>Optimización</h3>
+            </header>
+            <ul>
+              <li>Ajuste de campañas, mensajes, landing y automatizaciones según los datos.</li>
+              <li>Cuatro piezas de contenido adicionales.</li>
+              <li>Campaña de prueba para compradores, ligada a un evento real de un organizador ya vinculado.</li>
+              <li>Adaptación de las piezas, producción de stories y formatos cortos, publicación del calendario y gestión de la comunidad, con reporte de alcance, interacción y crecimiento.</li>
+              <li>Indicadores consolidados y hoja de ruta del siguiente trimestre, con la recomendación para Estados Unidos.</li>
+            </ul>
+            <p class="outcome"><strong>Resultado:</strong> un embudo optimizado, una comunidad en crecimiento y aprendizajes documentados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="fuera">
+      <div class="wrap prose">
+        <p class="eyebrow"><i>06</i> Qué no incluye</p>
+        <h2>Qué no incluye</h2>
+        <p>Closer humano, presentación de la plataforma y negociación, que quedan a cargo de Tixxos. Si Tixxos quiere ese servicio de nuestra parte, se cotiza aparte.</p>
+        <p>Community management más allá de 2 redes sociales, con tres publicaciones semanales a partir de las piezas principales y sus adaptaciones. Los stories y formatos cortos se producen con diseño y texto, usando material existente. No incluye grabación ni edición de video, atención al cliente de compradores ni gestión de crisis.</p>
+        <p>Campañas en Estados Unidos, que quedan como recomendación.</p>
+        <p>Desarrollos fuera del alcance, que se cotizan por separado.</p>
+      </div>
+    </section>
+
+    <section class="band band--mist" id="ritmo">
+      <div class="wrap prose">
+        <p class="eyebrow"><i>07</i> Ritmo de trabajo</p>
+        <h2>Ritmo de trabajo</h2>
+        <p>Trello como tablero y reunión de seguimiento los viernes, de una hora.</p>
+        <p>Respuesta de Partnersflux en 24 a 48 horas hábiles.</p>
+        <p>Tixxos aprueba piezas en 48 horas hábiles. Pasado ese plazo se dan por aprobadas.</p>
+        <p>Una ronda de ajustes por pieza.</p>
+        <p>Lead calificado: organizador con evento definido, aforo y fecha, que aceptó la reunión. Tixxos atiende estos leads en 48 horas.</p>
+        <p>Las metas son de proceso: landing activa, campañas corriendo, reuniones agendadas. El cierre depende de Tixxos.</p>
+      </div>
+    </section>
+
+    <section class="band band--paper" id="inversion">
+      <div class="wrap">
+        <div class="prose">
+          <p class="eyebrow"><i>08</i> Inversión y condiciones</p>
+          <h2>Inversión y condiciones</h2>
+          <p>Honorarios: COP 3.497.000 al mes, por 3 meses. Total: COP 10.491.000. Se pagan dentro de los primeros 5 días de cada mes.</p>
+        </div>
+        <div class="money" style="margin-top:28px">
+          <div class="money-hero">
+            <div class="label">Honorarios</div>
+            <p class="price">COP 3.497.000</p>
+            <p class="sub">Al mes, por 3 meses. Total: COP 10.491.000. Se pagan dentro de los primeros 5 días de cada mes.</p>
+          </div>
+          <div class="terms">
+            <article class="term">
+              <h3>Lo que no incluyen los honorarios</h3>
+              <p>La pauta publicitaria, las licencias de terceros y los impuestos aplicables. Tixxos paga la pauta directamente a la plataforma desde su propia cuenta publicitaria, y el presupuesto mínimo mensual se acuerda en la reunión de arranque. Los activos publicitarios quedan a nombre de Tixxos.</p>
+            </article>
+            <article class="term">
+              <h3>Comisión</h3>
+              <p>2% del valor de las entradas vendidas por organizadores originados en el embudo de Partnersflux, registrados en el CRM con fecha. No requiere participación en el cierre. Aplica durante 12 meses desde la vinculación de cada organizador, aunque el contrato termine. Se calcula sobre ingresos recibidos y conciliados, sin impuestos, reembolsos, contracargos ni transacciones canceladas. Se liquida cada mes con reporte.</p>
+            </article>
+            <article class="term">
+              <h3>Bono</h3>
+              <p>COP 150.000 por cada reunión calificada realizada, adicional a los honorarios.</p>
+            </article>
+            <article class="term">
+              <h3>Clientes preexistentes</h3>
+              <p>Tixxos entrega el listado en la primera semana. Estos clientes no generan comisión.</p>
+            </article>
+            <article class="term">
+              <h3>Propiedad</h3>
+              <p>Los entregables pagados son de Tixxos. Las metodologías, plantillas y flujos base se mantienen con Partnersflux, que podrá mencionar el proyecto como caso.</p>
+            </article>
+            <article class="term">
+              <h3>Renovación y terminación</h3>
+              <p>Evaluación al cierre del mes 2 con indicadores acordados. Terminación con 15 días de aviso. Las comisiones de organizadores ya vinculados siguen vigentes.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--paper" id="despues">
+      <div class="wrap prose">
+        <p class="eyebrow"><i>09</i> Después del mes 3</p>
+        <h2>Después del mes 3</h2>
+        <p>Renovación ajustada a los resultados, con opción de sumar closer humano, campañas continuas para compradores y expansión a Estados Unidos.</p>
+      </div>
+    </section>
+
+    <section class="close" id="cierre">
+      <div class="wrap">
+        <div class="logo-pair">
+          <img class="logo-tixxos" src="assets/logo-tixxos.png" alt="TIXxOS" />
+          <span class="logo-x" aria-hidden="true">×</span>
+          <img class="logo-fluxa" src="assets/logo-fluxa.png" alt="Fluxa" />
+        </div>
+        <p class="eyebrow" style="color:rgba(255,255,255,0.62)"><i>10</i> Siguiente paso</p>
+        <h2>Siguiente paso</h2>
+        <p>Reunión de arranque y firma. En la primera semana: accesos, listado de preexistentes, presupuesto mínimo de pauta, definición de lead calificado y metas de proceso.</p>
+        <div class="close-box">
+          <p>Honorarios: COP 3.497.000 al mes, por 3 meses. Total: COP 10.491.000. Se pagan dentro de los primeros 5 días de cada mes.</p>
+          <a class="btn btn-solid" href="https://wa.me/573116425337?text=Hola%20Partnersflux.%20Revis%C3%A9%20la%20propuesta%20de%20Tixxos%20y%20quiero%20conversar%20sobre%20el%20arranque.">Hablar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="foot">
+    <div class="wrap">TIXXOS × PARTNERSFLUX</div>
+  </footer>
+
+  <script>
+    const bar = document.getElementById("progress");
+    const nav = document.getElementById("nav");
+    const links = [...document.querySelectorAll(".nav-links a")];
+    const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+    function onScroll() {
+      const scrolled = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + "%";
+      nav.classList.toggle("is-stuck", scrolled > 8);
+
+      const mark = scrolled + 120;
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.offsetTop <= mark) current = section;
+      }
+      links.forEach((a) => {
+        const on = a.getAttribute("href") === "#" + current.id;
+        a.classList.toggle("is-active", on);
+        if (on) {
+          const scroller = a.parentElement;
+          const left = (a.offsetLeft - scroller.offsetLeft) - (scroller.clientWidth - a.offsetWidth) / 2;
+          scroller.scrollTo({ left: Math.max(0, left) });
+        }
+      });
+    }
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const pieces = document.querySelectorAll(".band .prose, .shift-col, .card, .phase, .rules > div, .money-hero, .term, .close .wrap > *");
+      const seen = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          seen.unobserve(entry.target);
+        });
+      }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+      pieces.forEach((el) => {
+        const group = [...el.parentElement.children];
+        const index = group.indexOf(el);
+        if (index > 0) el.style.transitionDelay = Math.min(index, 4) * 70 + "ms";
+        el.classList.add("rise");
+        seen.observe(el);
+      });
+    }
+  </script>
+</body>
+</html>
